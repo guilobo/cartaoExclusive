@@ -21,7 +21,6 @@
 
       <h1 class="header center brown-text darken-4 ">Cadastro de novo cliente</h1>
       <br><br>
-
     </div>
   </div>
   <?php
