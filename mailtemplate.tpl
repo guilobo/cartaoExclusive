@@ -624,7 +624,7 @@ line-height:150% !important;
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                            <h1>Seu Cartão ja ésta Pronto!</h1>
+                            <h1>Seu Cartão já está Pronto!</h1>
 
                         </td>
                     </tr>
@@ -655,7 +655,7 @@ line-height:150% !important;
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                            <div style="text-align: center;">Clique no botão abaixo para ter acesso ao seu cartão Dr.a Isis Toledo Exclusive!!!</div>
+                            <div style="text-align: center;">Clique no botão abaixo para ter acesso ao seu cartão Dra. Isis Toledo Exclusive!!!</div>
 
                         </td>
                     </tr>
