@@ -670,8 +670,8 @@ line-height:150% !important;
                 <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
                     <tbody><tr>
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
-                            <div style="text-align: center;">para acesso a sua área restrita, seu loguin se senha são:<br>
-Login: [$loguin]<br>
+                            <div style="text-align: center;">para acesso a sua área restrita, seu login se senha são:<br>
+Login: [$login]<br>
 Senha: [$senha]</div>
                         </td>
                     </tr>

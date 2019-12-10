@@ -67,9 +67,22 @@
       ?><div class="row center green"><?
       echo "Usuário ".$username." cadastrado com sucesso. ID = ".$userId;
 
+
+      ob_start();
+      include('mailtamplate.tpl');
+      $ob = ob_get_clean();
+
+      $content_replace = array(
+    '[$login]'    => $email,
+    '[$senha]'  => $password,
+    '[$id]'=> $userId,
+    );
+
+    $message = strtr($ob, $content_replace );
+
       $to      = $email;
       $subject = 'Seu cartão Exclusive Dra. Isis Toledo já está disponível';
-      $message = 'Para ecessar seu cartão clique no link <a href=https://draisistoledo.com/cartao-exclusive/?id='.$userId.'>Clique aqui</a>';
+      //$message = 'Para ecessar seu cartão clique no link <a href=https://draisistoledo.com/cartao-exclusive/?id='.$userId.'>Clique aqui</a>';
       $headers = 'From: site@draisistoledo.com' . "\r\n" .
                  'Reply-To: contato@draisistoledo.com' . "\r\n" .
                  'Content-Type: text/html; charset=UTF-8\r\n';
