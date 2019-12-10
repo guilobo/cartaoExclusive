@@ -40,7 +40,11 @@
   $email = $_POST["email"];
   $validade = $_POST["validade"];
   $cpf = $_POST["CPF"];
-
+  $whatsapp = $_POST["whatsapp"];
+  $whatsapp = str_replace($whatsapp, "-", "");
+  $whatsapp = str_replace($whatsapp, "(", "");
+  $whatsapp = str_replace($whatsapp, ")", "");
+  $whatsapp = str_replace($whatsapp, " ", "");
 
 
   if ($password == "")
@@ -58,6 +62,7 @@
     $userId = wp_create_user( $username, $password, $email);
     add_user_meta( $userId, 'cpf', $cpf);
     add_user_meta( $userId, 'validade', $validade);
+    add_user_meta( $userId, 'whatsapp', $whatsapp);
 
     if (isset($userId))
     if ( is_wp_error( $userId ) ) {
@@ -68,6 +73,12 @@
       echo "Usuário ".$username." cadastrado com sucesso. ID = ".$userId;
 
 
+      if(strlen($_POST["whatsapp"]) > 9 ){
+        $msg_whatsapp = 'Parabéns agora você tem seu cartão Dra. Isis Toledo Exlusive. Acesse seu cartão no link:  https://draisistoledo.com/cartao-exclusive/?id='.$userId;
+        echo "<br>Caso queira enviar o cartão para o cliente via WhatsApp <a target='_blank' href=https://api.whatsapp.com/send?phone=55".$_POST["whatsapp"]."&text=".urlencode($msg_whatsapp)."><b>Clique Aqui</b></a>";
+      }
+
+      // Enviando mensagem com template ao email do usuário
       ob_start();
       include('mailtemplate.tpl');
       $ob = ob_get_clean();
@@ -87,7 +98,8 @@
                  'Reply-To: contato@draisistoledo.com' . "\r\n" .
                  'Content-Type: text/html; charset=UTF-8\r\n';
       mail($to, $subject, $message, $headers);
-    }
+
+    } //fechando o else
 
   }else{
     ?><div class="row center white-text red"><?
@@ -119,6 +131,15 @@
         <i class="material-icons prefix">email</i>
         <input id="email" type="email" name="email" class="validate">
         <label for="email">Email</label>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">phone_android</i>
+        <input id="whatsapp" type="number" name="whatsapp" class="validate">
+        <label for="whatsapp">WhatsApp com DDD (489999999)</label>
       </div>
     </div>
 
