@@ -66,6 +66,14 @@
     }else{
       ?><div class="row center green"><?
       echo "Usuário ".$username." cadastrado com sucesso. ID = ".$userId;
+
+      $to      = $email;
+      $subject = 'Seu cartão Exclusive Dra. Isis Toledo já está disponível';
+      $message = 'Para ecessar seu cartão clique no link <a href=https://draisistoledo.com/cartao-exclusive/?id='.$userId.'>Clique aqui</a>';
+      $headers = 'From: site@draisistoledo.com' . "\r\n" .
+                 'Reply-To: contato@draisistoledo.com' . "\r\n" .
+                 'Content-Type: text/html; charset=UTF-8\r\n';
+      mail($to, $subject, $message, $headers);
     }
 
   }else{
@@ -136,7 +144,7 @@
     </div>
     <div class="row">
       <div class="">
-        sugetão de senha: <b><?echo wp_generate_password( $length = 6, $include_standard_special_chars = false );?>
+        sugestão de senha: <b><?echo wp_generate_password( $length = 6, $include_standard_special_chars = false );?>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">lock</i>
