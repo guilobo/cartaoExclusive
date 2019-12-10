@@ -1,16 +1,18 @@
 <html>
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Cadastro de novo cliete para cartão</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/styleCliente.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/styleCliente.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 </head>
+
 <body>
 
   <nav class="nav-extended">
@@ -21,7 +23,7 @@
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#parceiros">Test 1</a></li>
+        <li class="tab"><a href="#parceiros">Parceiros</a></li>
         <li class="tab"><a class="active" href="#clientes">Clientes</a></li>
       </ul>
     </div>
@@ -30,29 +32,121 @@
 
   <!-- Página de parceiros -->
   <div class="container">
-  <div id="parceiros" class="col s12">
 
-    <h4 class="header">Parceiros Inativos</h4>
+    <div id="parceiros" class="col s12">
 
-    <ul class="collapsible">
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">store_mall_directory</i>
-          Parceiro 1
-          <span class="badge green"><a class="white-text">Ativo</a></span></div>
-        <div class="collapsible-body"><p>FORM AQUI.</p></div>
-      </li>
+      <h4 class="header">Aguardando Aprovação</h4>
 
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">store_mall_directory</i>
-          Second
-          <span class="badge red"><a class="white-text">Inativo</a></span></div>
-        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-      </li>
-    </ul>
+      <ul class="collapsible popout">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">store_mall_directory</i>
+            Parceiro 1
+            <span class="badge green"><a class="white-text">Ativo</a></span></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <img class="materialboxed" width="150" src="img/logo.jpg">
+                  </div>
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">Nome da Empresa</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled id="nome" type="text" class="validate" value="Pedro de Lara">
+                    <label for="nome">Email</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">CNPJ</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled id="nome" type="text" class="validate" value="Pedro de Lara">
+                    <label for="nome">Endereço</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">Cidade</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled id="nome" type="text" class="validate" value="Pedro de Lara">
+                    <label for="nome">Estado</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">Telefone</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled id="nome" type="text" class="validate" value="Pedro de Lara">
+                    <label for="nome">Ramo de Atuação</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">Horário de Funcionamento</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled id="nome" type="text" class="validate" value="Pedro de Lara">
+                    <label for="nome">Desconto</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">Tipo de Desconto</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input disabled id="email" type="email" class="validate" value="pedro@bol.com.br">
+                    <label for="email">Observação do Desconto</label>
+                  </div>
+                </div>
 
-    <h4 class="header">Parceiros Ativos</h4>
+                <div class="row">
+                  <div class="col s6">
+                    <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                  </div>
+
+                  <div class="col s6">
+                      <a class="waves-effect waves-light btn right"><i class="material-icons left">check</i>APROVAR</a>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">store_mall_directory</i>
+            Second
+            <span class="badge red"><a class="white-text">Inativo</a></span></div>
+          <div class="collapsible-body">
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+        </li>
+      </ul>
+
+      <h4 class="header">Parceiros</h4>
+
+      <div class="row ">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <label for="icon_prefix2">Procurar Cliente</label>
+            </div>
+      </div>
     </div>
   </div><!-- end parceiros -->
 
@@ -114,7 +208,7 @@
        <div class="col s6">
          <button class="btn waves-effect waves-light right" type="submit" name="action">Salvar
     <i class="material-icons right">save</i>
-  </button
+  </button>
        </div>
      </div>
 
@@ -139,9 +233,11 @@
 
 
 
-  <!--  Scripts-->
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-  </body>
+
+      <!--  Scripts-->
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+</body>
+
 </html>
