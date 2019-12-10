@@ -701,7 +701,7 @@ Senha: [$senha]</div>
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 20px; padding: 15px;">
-                                <a class="mcnButton " title="Acesse seu cartão" href="https://draisistoledo.com/cartao-exclusive/id=[$id]" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Acesse seu cartão</a>
+                                <a class="mcnButton " title="Acesse seu cartão" href="https://draisistoledo.com/cartao-exclusive/?id=[$id]" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Acesse seu cartão</a>
                             </td>
                         </tr>
                     </tbody>

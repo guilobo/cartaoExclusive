@@ -69,7 +69,7 @@
 
 
       ob_start();
-      include('mailtamplate.tpl');
+      include('mailtemplate.tpl');
       $ob = ob_get_clean();
 
       $content_replace = array(
