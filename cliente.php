@@ -69,9 +69,10 @@
 
       $to      = $email;
       $subject = 'Seu cartão Exclusive Dra. Isis Toledo já está disponível';
-      $message = 'Para ecessar seu cartão clique no link <a href=https://draisistoledo.com/cartao-exclusive/?id=$userId>';
+      $message = 'Para ecessar seu cartão clique no link <a href=https://draisistoledo.com/cartao-exclusive/?id='.$userId.'>Clique aqui</a>';
       $headers = 'From: site@draisistoledo.com' . "\r\n" .
-                 'Reply-To: contato@draisistoledo.com' . "\r\n";
+                 'Reply-To: contato@draisistoledo.com' . "\r\n" .
+                 'Content-Type: text/html; charset=UTF-8\r\n';
       mail($to, $subject, $message, $headers);
     }
 
