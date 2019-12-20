@@ -6,8 +6,16 @@ $(document).ready(function(){
       $.each(clientes, function(index, cliente){
 
         var itemCliente = "<li class=''>"+
-          "<div class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login+"<span class='badge green white-text'>ativo</span></div>"+
-          "<div class='collapsible-body'>"+
+          "<div class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login;
+          if( (new Date().getTime() > new Date(cliente.validade).getTime()))
+          {
+            var vencido = true;
+            itemCliente+="<span class='badge red white-text'>vencido</span></div>";
+          }else{
+            var vencido = false;
+            itemCliente+="<span class='badge green white-text'>ativo</span></div>";
+          }
+          itemCliente+="<div class='collapsible-body'>"+
             "<div class='row'>"+
          "<form class='col s12'>"+
            "<div class='row'>"+
@@ -52,7 +60,11 @@ $(document).ready(function(){
        "</div>"+
           "</div>"+
         "</li>";
+        if(vencido){
+        $("#listaClientes").prepend(itemCliente);
+      }else {
         $("#listaClientes").append(itemCliente);
+      }
       })
 
   });
