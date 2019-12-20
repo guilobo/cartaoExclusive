@@ -62,7 +62,7 @@
     $userId = wp_create_user( $username, $password, $email);
     add_user_meta( $userId, 'cpf', $cpf);
     add_user_meta( $userId, 'validade', $validade);
-    add_user_meta( $userId, 'whatsapp', $whatsapp);
+    add_user_meta( $userId, 'whatsapp', $_POST["whatsapp"]);
 
     if (isset($userId))
     if ( is_wp_error( $userId ) ) {
