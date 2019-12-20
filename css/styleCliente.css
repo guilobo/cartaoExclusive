@@ -40,3 +40,11 @@
 .tab{
   overflow:hidden !important;
 }
+.some{
+  display: none;
+}
+
+.imgLogoAdmParceiro{
+  max-width: 150px;
+  max-height: 100px;
+}
