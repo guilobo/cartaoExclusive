@@ -37,6 +37,6 @@
   padding: 10px;
 }
 
-.nav-content{
-  overflow:hidden;
+.tab{
+  overflow:hidden !important;
 }
