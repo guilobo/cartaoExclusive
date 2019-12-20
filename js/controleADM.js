@@ -79,64 +79,64 @@ $(document).ready(function(){
                     "<img class='materialboxed imgLogoAdmParceiro' src='uploads/"+parceiro.logo+"'>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>Nome da Empresa</label>"+
+                    "<input id='nome' type='text' class='validate' value="+parceiro.nome+">"+
+                    "<label for='text' class='active'>Nome da Empresa</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value='Pedro de Lara'>"+
-                    "<label for='nome'>Email</label>"+
+                    "<input id='email' type='email' class='validate' value="+parceiro.email+">"+
+                    "<label for='email' class='active'>Email</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>CNPJ</label>"+
-                  "</div>"+
-                "</div>"+
-                "<div class='row'>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value='Pedro de Lara'>"+
-                    "<label for='nome'>Endereço</label>"+
-                  "</div>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>Cidade</label>"+
+                    "<input id='cnpj' type='number' class='validate' value="+parceiro.cnpj+">"+
+                    "<label for='cnpj' class='active'>CNPJ</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value='Pedro de Lara'>"+
-                    "<label for='nome'>Estado</label>"+
+                    "<input id='endereco' type='text' class='validate' value="+parceiro.endereco+">"+
+                    "<label for='endereco' class='active'>Endereço</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>Telefone</label>"+
-                  "</div>"+
-                "</div>"+
-                "<div class='row'>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value='Pedro de Lara'>"+
-                    "<label for='nome'>Ramo de Atuação</label>"+
-                  "</div>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>Horário de Funcionamento</label>"+
+                    "<input id='cidade' type='text' class='validate' value="+parceiro.cidade+">"+
+                    "<label for='cidade' class='active'>Cidade</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value='Pedro de Lara'>"+
-                    "<label for='nome'>Desconto</label>"+
+                    "<input id='estado' type='text' class='validate' value="+parceiro.estado+">"+
+                    "<label for='estado' class='active'>Estado</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>Tipo de Desconto</label>"+
+                    "<input id='telefone' type='number' class='validate' value="+parceiro.telefone+">"+
+                    "<label for='telefone' class='active'>Telefone</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='pedro@bol.com.br'>"+
-                    "<label for='email'>Observação do Desconto</label>"+
+                    "<input id='ramo' type='text' class='validate' value="+parceiro.ramo+">"+
+                    "<label for='ramo' class='active'>Ramo de Atuação</label>"+
+                  "</div>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='funcionamento' type='text' class='validate' value="+parceiro.horaFuncionamento+">"+
+                    "<label for='funcionamento' class='active'>Horário de Funcionamento</label>"+
+                  "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='desconto' type='text' class='validate' value="+parceiro.desconto+">"+
+                    "<label for='desconto' class='active'>Desconto</label>"+
+                  "</div>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='tipoDesconto' type='text' class='validate' value="+parceiro.tipoDesconto+">"+
+                    "<label for='tipoDesconto' class='active'>Tipo de Desconto</label>"+
+                  "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='obsDesconto' type='text' class='validate' value="+parceiro.obsDesconto+">"+
+                    "<label for='obsDesconto' class='active'>Observação do Desconto</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
