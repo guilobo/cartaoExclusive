@@ -2,10 +2,10 @@ $(document).ready(function(){
   $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"clientes"})
   .done(function(data){
     var clientes = JSON.parse(data);
-    console.log(clientes);
-      $(clientes).each(function(index){
+
+      $.each(clientes, function(index, cliente){
         var itemCliente = "<li class=''>"+
-          "<div class='collapsible-header'><i class='material-icons'>person</i>Pedro de Lara<span class='badge green white-text'>ativo</span></div>"+
+          "<div class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login+"<span class='badge green white-text'>ativo</span></div>"+
           "<div class='collapsible-body'>"+
             "<div class='row'>"+
          "<form class='col s12'>"+
