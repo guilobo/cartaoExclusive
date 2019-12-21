@@ -1,12 +1,13 @@
 $(document).ready(function(){
   $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"clientes"})
   .done(function(data){
+    $("#listaClientes").html("");
     var clientes = JSON.parse(data);
 
       $.each(clientes, function(index, cliente){
 
         var itemCliente = "<li class=''>"+
-          "<div class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login;
+          "<div id='itenClienteLista' class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login;
           if( (new Date().getTime() > new Date(cliente.validade).getTime()))
           {
             var vencido = true;
@@ -30,8 +31,8 @@ $(document).ready(function(){
            "</div>"+
            "<div class='row'>"+
              "<div class='input-field col s12'>"+
-               "<input id='password' type='password' class='validate' value='Senha'>"+
-               "<label for='password' class='active'>Senha</label>"+
+               "<input id='password' type='password' class='validate' value=''>"+
+               "<label for='password' class=''>Definir nova senha</label>"+
              "</div>"+
            "</div>"+
            "<div class='row'>"+
@@ -46,9 +47,10 @@ $(document).ready(function(){
                "<label for='validade' class='active'>Validade</label>"+
              "</div>"+
            "</div>"+
+           "<input type='hidden' class='validate' name='id' value="+cliente.id+">"+
            "<div class='row'>"+
              "<div class='col s6'>"+
-               "<a class='btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
+               "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
              "</div>"+
              "<div class='col s6'>"+
                "<button class='btn waves-effect waves-light right' type='submit' name='action'>Salvar"+
@@ -66,11 +68,18 @@ $(document).ready(function(){
         $("#listaClientes").append(itemCliente);
       }
       })
+      $(".btnExcluir").click(function(){
+        $(this).parent().parent().parent().find("input").each(function(){
+      console.log($(this).val())
+      })
+      })
 
   });
 
   $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"parceiros"})
   .done(function(data){
+    $("#listaParceiros").html("");
+    $("#barraCarregando").remove()
     var parceiros = JSON.parse(data);
 
       $.each(parceiros, function(index, parceiro){
@@ -170,8 +179,35 @@ $(document).ready(function(){
       }else {
         $("#listaParceiros").append(itemParceiro);
       }
-      })
+      M.AutoInit();
 
+    });
+
+  });
+
+});
+
+
+
+function PesquisaCliente(){
+  $("#listaClientes > li").each(function(){
+    if ($(this).find("#itenClienteLista").text().toUpperCase().indexOf($("#buscaClientes").val().toUpperCase()) == -1)
+    $(this).addClass("some")
+    else {
+      $(this).removeClass("some")
+    }
   })
+}
 
+$("#buscaClientes").keypress(function(){
+  PesquisaCliente();
+});
+
+$("#buscaClientes").focusout(function(){
+  PesquisaCliente();
+});
+
+$("#fechaBuscaCliente").click(function(){
+  $("#buscaClientes").val("");
+  PesquisaCliente();
 })
