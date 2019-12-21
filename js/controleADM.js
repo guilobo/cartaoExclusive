@@ -100,63 +100,76 @@ $(document).ready(function(){
                     "<img class='materialboxed imgLogoAdmParceiro' src='uploads/"+parceiro.logo+"'>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value="+parceiro.nome+">"+
+                    "<input id='nome' type='text' class='validate' value='"+parceiro.nome+"'>"+
                     "<label for='text' class='active'>Nome da Empresa</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value="+parceiro.email+">"+
+                    "<input id='email' type='email' class='validate' value='"+parceiro.email+"'>"+
                     "<label for='email' class='active'>Email</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='cnpj' type='number' class='validate' value="+parceiro.cnpj+">"+
+                    "<input id='cnpj' type='text' class='validate' value='"+parceiro.cnpj+"'>"+
                     "<label for='cnpj' class='active'>CNPJ</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='endereco' type='text' class='validate' value="+parceiro.endereco+">"+
+                    "<input id='endereco' type='text' class='validate' value='"+parceiro.endereco+"'>"+
                     "<label for='endereco' class='active'>Endereço</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='cidade' type='text' class='validate' value="+parceiro.cidade+">"+
+                    "<input id='cidade' type='text' class='validate' value='"+parceiro.cidade+"'>"+
                     "<label for='cidade' class='active'>Cidade</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='estado' type='text' class='validate' value="+parceiro.estado+">"+
+                    "<input id='estado' type='text' class='validate' value='"+parceiro.estado+"'>"+
                     "<label for='estado' class='active'>Estado</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='telefone' type='number' class='validate' value="+parceiro.telefone+">"+
+                    "<input id='telefone' type='text' class='validate' value='"+parceiro.telefone+"'>"+
                     "<label for='telefone' class='active'>Telefone</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='ramo' type='text' class='validate' value="+parceiro.ramo+">"+
+                    "<input id='ramo' type='text' class='validate' value='"+parceiro.ramo+"'>"+
                     "<label for='ramo' class='active'>Ramo de Atuação</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='funcionamento' type='text' class='validate' value="+parceiro.horaFuncionamento+">"+
+                    "<input id='funcionamento' type='text' class='validate' value='"+parceiro.horaFuncionamento+"'>"+
                     "<label for='funcionamento' class='active'>Horário de Funcionamento</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='desconto' type='text' class='validate' value="+parceiro.desconto+">"+
+                    "<input id='desconto' type='text' class='validate' value='"+parceiro.desconto+"'>"+
                     "<label for='desconto' class='active'>Desconto</label>"+
                   "</div>"+
+
+                  "<label>Tipo de Desconto</label>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='tipoDesconto' type='text' class='validate' value="+parceiro.tipoDesconto+">"+
-                    "<label for='tipoDesconto' class='active'>Tipo de Desconto</label>"+
+                  "<div class='switch'>"+
+                  "<label>"+
+                  "R$";
+                  if (parceiro.tipoDesconto == 'porcento' ) {
+                 itemParceiro += "<input checked type='checkbox'>";
+                  }else{
+                    itemParceiro += "<input type='checkbox'>";
+                  }
+                itemParceiro += "<span class='lever'></span>"+
+                "%"+
+                "</label>"+
+                "</div>"+
+                  //  "<label for='tipoDesconto' class='active'>Tipo de Desconto</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='obsDesconto' type='text' class='validate' value="+parceiro.obsDesconto+">"+
+                  "<div class='input-field col s12'>"+
+                    "<input id='obsDesconto' type='text' class='validate' value='"+parceiro.obsDesconto+"'>"+
                     "<label for='obsDesconto' class='active'>Observação do Desconto</label>"+
                   "</div>"+
                 "</div>"+
