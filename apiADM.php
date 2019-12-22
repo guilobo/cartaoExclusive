@@ -17,7 +17,7 @@ if (isset($_POST["acao"])) {
       break;
 
     case "editaCliente":
-      // código
+      echo "recebi varias coisas como: ".$_POST['nome'];
       break;
 
     case "editaParceiro":

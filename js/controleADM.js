@@ -21,39 +21,39 @@ $(document).ready(function(){
          "<form class='col s12'>"+
            "<div class='row'>"+
              "<div class='input-field col s6'>"+
-               "<input disabled id='nome' type='text' class='validate' value='"+cliente.user_login+"'>"+
-               "<label for='nome' class='active'>Nome</label>"+
+               "<input disabled id='Clientenome"+cliente.id+"' type='text' class='validate' value='"+cliente.user_login+"'>"+
+               "<label for='Clientenome"+cliente.id+"' class='active'>Nome</label>"+
              "</div>"+
              "<div class='input-field col s6'>"+
-               "<input disabled  id='email' type='email' class='validate' value="+cliente.user_email+">"+
-               "<label for='email' class='active'>Email</label>"+
+               "<input disabled  id='Clienteemail"+cliente.id+"' type='email' class='validate' value="+cliente.user_email+">"+
+               "<label for='Clienteemail"+cliente.id+"' class='active'>Email</label>"+
              "</div>"+
            "</div>"+
            "<div class='row'>"+
              "<div class='input-field col s12'>"+
-               "<input id='password' type='password' class='validate' value=''>"+
-               "<label for='password' class=''>Definir nova senha</label>"+
+               "<input id='Clientepassword"+cliente.id+"' type='password' class='validate' value=''>"+
+               "<label for='Clientepassword"+cliente.id+"' class=''>Definir nova senha</label>"+
              "</div>"+
            "</div>"+
            "<div class='row'>"+
              "<div class='input-field col s12'>"+
-               "<input id='cpf' type='text' class='validate' value="+cliente.cpf+">"+
-               "<label for='cpf' class='active'>CPF</label>"+
+               "<input id='Clientecpf"+cliente.id+"' type='text' class='validate' value="+cliente.cpf+">"+
+               "<label for='Clientecpf"+cliente.id+"' class='active'>CPF</label>"+
              "</div>"+
            "</div>"+
            "<div class='row'>"+
              "<div class='input-field col s12'>"+
-               "<input id='validade' type='date' class='validate' value="+cliente.validade+">"+
-               "<label for='validade' class='active'>Validade</label>"+
+               "<input id='Clientevalidade"+cliente.id+"' type='date' class='validate' value="+cliente.validade+">"+
+               "<label for='Clientevalidade"+cliente.id+"' class='active'>Validade</label>"+
              "</div>"+
            "</div>"+
-           "<input type='hidden' class='validate' name='id' value="+cliente.id+">"+
+           "<input type='hidden' class='validate' name='Clienteid"+cliente.id+"' value="+cliente.id+">"+
            "<div class='row'>"+
              "<div class='col s6'>"+
                "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
              "</div>"+
              "<div class='col s6'>"+
-               "<button class='btn waves-effect waves-light right' type='submit' name='action'>Salvar"+
+               "<button class='btnSalvar btn waves-effect waves-light right' name='action'>Salvar"+
           "<i class='material-icons right'>save</i>"+
         "</button>"+
              "</div>"+
@@ -71,6 +71,23 @@ $(document).ready(function(){
       $(".btnExcluir").click(function(){
         $(this).parent().parent().parent().find("input").each(function(){
       console.log($(this).val())
+      })
+      })
+
+      $(".btnSalvar").click(function(event){
+        event.preventDefault();
+        var dadosCliente = {
+      acao : "editaCliente",
+      nome : $(this).parent().parent().parent().find("input").eq(0).val(),
+      email :  $(this).parent().parent().parent().find("input").eq(1).val(),
+      senha :  $(this).parent().parent().parent().find("input").eq(2).val(),
+      cpf :  $(this).parent().parent().parent().find("input").eq(3).val(),
+      validade :  $(this).parent().parent().parent().find("input").eq(4).val(),
+      id :  $(this).parent().parent().parent().find("input").eq(5).val()
+      };
+      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
+      .done(function(data){
+        console.log(data);
       })
       })
 
@@ -100,54 +117,54 @@ $(document).ready(function(){
                     "<img class='materialboxed imgLogoAdmParceiro' src='uploads/"+parceiro.logo+"'>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='nome' type='text' class='validate' value='"+parceiro.nome+"'>"+
-                    "<label for='text' class='active'>Nome da Empresa</label>"+
+                    "<input id='nome"+parceiro.id+"' type='text' class='validate' value='"+parceiro.nome+"'>"+
+                    "<label for='nome"+parceiro.id+"' class='active'>Nome da Empresa</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='email' type='email' class='validate' value='"+parceiro.email+"'>"+
-                    "<label for='email' class='active'>Email</label>"+
+                    "<input id='email"+parceiro.id+"' type='email' class='validate' value='"+parceiro.email+"'>"+
+                    "<label for='email"+parceiro.id+"' class='active'>Email</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='cnpj' type='text' class='validate' value='"+parceiro.cnpj+"'>"+
-                    "<label for='cnpj' class='active'>CNPJ</label>"+
-                  "</div>"+
-                "</div>"+
-                "<div class='row'>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='endereco' type='text' class='validate' value='"+parceiro.endereco+"'>"+
-                    "<label for='endereco' class='active'>Endereço</label>"+
-                  "</div>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='cidade' type='text' class='validate' value='"+parceiro.cidade+"'>"+
-                    "<label for='cidade' class='active'>Cidade</label>"+
+                    "<input id='cnpj"+parceiro.id+"' type='text' class='validate' value='"+parceiro.cnpj+"'>"+
+                    "<label for='cnpj"+parceiro.id+"' class='active'>CNPJ</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='estado' type='text' class='validate' value='"+parceiro.estado+"'>"+
-                    "<label for='estado' class='active'>Estado</label>"+
+                    "<input id='endereco"+parceiro.id+"' type='text' class='validate' value='"+parceiro.endereco+"'>"+
+                    "<label for='endereco"+parceiro.id+"' class='active'>Endereço</label>"+
                   "</div>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='telefone' type='text' class='validate' value='"+parceiro.telefone+"'>"+
-                    "<label for='telefone' class='active'>Telefone</label>"+
-                  "</div>"+
-                "</div>"+
-                "<div class='row'>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='ramo' type='text' class='validate' value='"+parceiro.ramo+"'>"+
-                    "<label for='ramo' class='active'>Ramo de Atuação</label>"+
-                  "</div>"+
-                  "<div class='input-field col s6'>"+
-                    "<input id='funcionamento' type='text' class='validate' value='"+parceiro.horaFuncionamento+"'>"+
-                    "<label for='funcionamento' class='active'>Horário de Funcionamento</label>"+
+                    "<input id='cidade"+parceiro.id+"' type='text' class='validate' value='"+parceiro.cidade+"'>"+
+                    "<label for='cidade"+parceiro.id+"' class='active'>Cidade</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s6'>"+
-                    "<input id='desconto' type='text' class='validate' value='"+parceiro.desconto+"'>"+
-                    "<label for='desconto' class='active'>Desconto</label>"+
+                    "<input id='estado"+parceiro.id+"' type='text' class='validate' value='"+parceiro.estado+"'>"+
+                    "<label for='estado"+parceiro.id+"' class='active'>Estado</label>"+
+                  "</div>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='telefone"+parceiro.id+"' type='text' class='validate' value='"+parceiro.telefone+"'>"+
+                    "<label for='telefone"+parceiro.id+"' class='active'>Telefone</label>"+
+                  "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='ramo"+parceiro.id+"' type='text' class='validate' value='"+parceiro.ramo+"'>"+
+                    "<label for='ramo"+parceiro.id+"' class='active'>Ramo de Atuação</label>"+
+                  "</div>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='funcionamento"+parceiro.id+"' type='text' class='validate' value='"+parceiro.horaFuncionamento+"'>"+
+                    "<label for='funcionamento"+parceiro.id+"' class='active'>Horário de Funcionamento</label>"+
+                  "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                  "<div class='input-field col s6'>"+
+                    "<input id='desconto"+parceiro.id+"' type='text' class='validate' value='"+parceiro.desconto+"'>"+
+                    "<label for='desconto"+parceiro.id+"' class='active'>Desconto</label>"+
                   "</div>"+
 
                   "<label>Tipo de Desconto</label>"+
@@ -169,8 +186,8 @@ $(document).ready(function(){
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s12'>"+
-                    "<input id='obsDesconto' type='text' class='validate' value='"+parceiro.obsDesconto+"'>"+
-                    "<label for='obsDesconto' class='active'>Observação do Desconto</label>"+
+                    "<input id='obsDesconto"+parceiro.id+"' type='text' class='validate' value='"+parceiro.obsDesconto+"'>"+
+                    "<label for='obsDesconto"+parceiro.id+"' class='active'>Observação do Desconto</label>"+
                   "</div>"+
                 "</div>"+
                 "<div class='row'>"+
