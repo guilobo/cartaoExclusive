@@ -1,7 +1,11 @@
 $(document).ready(function(){
 carregaClientes();
+carregaParceiro();
 
 
+
+});
+function carregaParceiro(){
   $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"parceiros"})
   .done(function(data){
     $("#listaParceiros").html("");
@@ -123,9 +127,7 @@ carregaClientes();
     });
 
   });
-
-});
-
+}
 function carregaClientes(){
   $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"clientes"})
   .done(function(data){
@@ -178,7 +180,7 @@ function carregaClientes(){
            "<input type='hidden' class='validate' name='Clienteid"+cliente.id+"' value="+cliente.id+">"+
            "<div class='row'>"+
              "<div class='col s6'>"+
-               "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
+             "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red modal-trigger' href='#modal1'><i class='material-icons'>delete</i></a> Excluir"+
              "</div>"+
              "<div class='col s6'>"+
                "<button class='btnSalvar btn waves-effect waves-light right' name='action'>Salvar"+
@@ -199,7 +201,26 @@ function carregaClientes(){
       })
       $(".btnExcluir").click(function(){
         $(this).parent().parent().parent().find("input").each(function(){
-      console.log($(this).val())
+        $("#modal1>div>h4").text("Excluir usuário?");
+        $("#modal1>div>p").html("Você quer DEFINITIVAMENTE excluir o usuário: <b>"+ $(this).parent().parent().parent().find("input").eq(0).val()+"?</b>");
+
+      })
+      })
+
+      // Fecha modal
+      $(".fechaModal").click(function(){
+        $('#modal1').modal('close');
+      })
+
+      // Excluir clientes
+      $(".excluiCliente").click(function(){
+        var dadosCliente = {
+      acao : "excluirCliente",
+      id :  $(this).parent().parent().parent().find("input").eq(5).val()
+      };
+      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
+      .done(function(data){
+        M.toast({html: 'Cliente excluído com sucesso', classes:'green'})
       })
       })
 
