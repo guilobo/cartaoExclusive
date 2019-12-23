@@ -1,97 +1,6 @@
 $(document).ready(function(){
-  $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"clientes"})
-  .done(function(data){
-    $("#listaClientes").html("");
-    var clientes = JSON.parse(data);
+carregaClientes();
 
-      $.each(clientes, function(index, cliente){
-
-        var itemCliente = "<li class=''>"+
-          "<div id='itenClienteLista' class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login;
-          if( (new Date().getTime() > new Date(cliente.validade).getTime()))
-          {
-            var vencido = true;
-            itemCliente+="<span class='badge red white-text'>vencido</span></div>";
-          }else{
-            var vencido = false;
-            itemCliente+="<span class='badge green white-text'>ativo</span></div>";
-          }
-          itemCliente+="<div class='collapsible-body'>"+
-            "<div class='row'>"+
-         "<form class='col s12'>"+
-           "<div class='row'>"+
-             "<div class='input-field col s6'>"+
-               "<input disabled id='Clientenome"+cliente.id+"' type='text' class='validate' value='"+cliente.user_login+"'>"+
-               "<label for='Clientenome"+cliente.id+"' class='active'>Nome</label>"+
-             "</div>"+
-             "<div class='input-field col s6'>"+
-               "<input disabled  id='Clienteemail"+cliente.id+"' type='email' class='validate' value="+cliente.user_email+">"+
-               "<label for='Clienteemail"+cliente.id+"' class='active'>Email</label>"+
-             "</div>"+
-           "</div>"+
-           "<div class='row'>"+
-             "<div class='input-field col s12'>"+
-               "<input id='Clientepassword"+cliente.id+"' type='password' class='validate' value=''>"+
-               "<label for='Clientepassword"+cliente.id+"' class=''>Definir nova senha</label>"+
-             "</div>"+
-           "</div>"+
-           "<div class='row'>"+
-             "<div class='input-field col s12'>"+
-               "<input id='Clientecpf"+cliente.id+"' type='text' class='validate' value="+cliente.cpf+">"+
-               "<label for='Clientecpf"+cliente.id+"' class='active'>CPF</label>"+
-             "</div>"+
-           "</div>"+
-           "<div class='row'>"+
-             "<div class='input-field col s12'>"+
-               "<input id='Clientevalidade"+cliente.id+"' type='date' class='validate' value="+cliente.validade+">"+
-               "<label for='Clientevalidade"+cliente.id+"' class='active'>Validade</label>"+
-             "</div>"+
-           "</div>"+
-           "<input type='hidden' class='validate' name='Clienteid"+cliente.id+"' value="+cliente.id+">"+
-           "<div class='row'>"+
-             "<div class='col s6'>"+
-               "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
-             "</div>"+
-             "<div class='col s6'>"+
-               "<button class='btnSalvar btn waves-effect waves-light right' name='action'>Salvar"+
-          "<i class='material-icons right'>save</i>"+
-        "</button>"+
-             "</div>"+
-           "</div>"+
-         "</form>"+
-       "</div>"+
-          "</div>"+
-        "</li>";
-        if(vencido){
-        $("#listaClientes").prepend(itemCliente);
-      }else {
-        $("#listaClientes").append(itemCliente);
-      }
-      })
-      $(".btnExcluir").click(function(){
-        $(this).parent().parent().parent().find("input").each(function(){
-      console.log($(this).val())
-      })
-      })
-
-      $(".btnSalvar").click(function(event){
-        event.preventDefault();
-        var dadosCliente = {
-      acao : "editaCliente",
-      nome : $(this).parent().parent().parent().find("input").eq(0).val(),
-      email :  $(this).parent().parent().parent().find("input").eq(1).val(),
-      senha :  $(this).parent().parent().parent().find("input").eq(2).val(),
-      cpf :  $(this).parent().parent().parent().find("input").eq(3).val(),
-      validade :  $(this).parent().parent().parent().find("input").eq(4).val(),
-      id :  $(this).parent().parent().parent().find("input").eq(5).val()
-      };
-      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
-      .done(function(data){
-        console.log(data);
-      })
-      })
-
-  });
 
   $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"parceiros"})
   .done(function(data){
@@ -217,7 +126,112 @@ $(document).ready(function(){
 
 });
 
+function carregaClientes(){
+  $.post("https://draisistoledo.com/cartao/apiADM.php", {acao:"clientes"})
+  .done(function(data){
+    $("#listaClientes").html("");
+    var clientes = JSON.parse(data);
 
+      $.each(clientes, function(index, cliente){
+
+        var itemCliente = "<li class=''>"+
+          "<div id='itenClienteLista' class='collapsible-header'><i class='material-icons'>person</i>"+cliente.user_login;
+          if( (new Date().getTime() > new Date(cliente.validade).getTime()))
+          {
+            var vencido = true;
+            itemCliente+="<span class='badge red white-text'>vencido</span></div>";
+          }else{
+            var vencido = false;
+            itemCliente+="<span class='badge green white-text'>ativo</span></div>";
+          }
+          itemCliente+="<div class='collapsible-body'>"+
+            "<div class='row'>"+
+         "<form class='col s12'>"+
+           "<div class='row'>"+
+             "<div class='input-field col s6'>"+
+               "<input disabled id='Clientenome"+cliente.id+"' type='text' class='validate' value='"+cliente.user_login+"'>"+
+               "<label for='Clientenome"+cliente.id+"' class='active'>Nome</label>"+
+             "</div>"+
+             "<div class='input-field col s6'>"+
+               "<input disabled  id='Clienteemail"+cliente.id+"' type='email' class='validate' value="+cliente.user_email+">"+
+               "<label for='Clienteemail"+cliente.id+"' class='active'>Email</label>"+
+             "</div>"+
+           "</div>"+
+           "<div class='row'>"+
+             "<div class='input-field col s12'>"+
+               "<input id='Clientepassword"+cliente.id+"' type='password' class='validate' value=''>"+
+               "<label for='Clientepassword"+cliente.id+"' class=''>Definir nova senha</label>"+
+             "</div>"+
+           "</div>"+
+           "<div class='row'>"+
+             "<div class='input-field col s12'>"+
+               "<input id='Clientecpf"+cliente.id+"' type='text' class='validate' value="+cliente.cpf+">"+
+               "<label for='Clientecpf"+cliente.id+"' class='active'>CPF</label>"+
+             "</div>"+
+           "</div>"+
+           "<div class='row'>"+
+             "<div class='input-field col s12'>"+
+               "<input id='Clientevalidade"+cliente.id+"' type='date' class='validate' value="+cliente.validade+">"+
+               "<label for='Clientevalidade"+cliente.id+"' class='active'>Validade</label>"+
+             "</div>"+
+           "</div>"+
+           "<input type='hidden' class='validate' name='Clienteid"+cliente.id+"' value="+cliente.id+">"+
+           "<div class='row'>"+
+             "<div class='col s6'>"+
+               "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
+             "</div>"+
+             "<div class='col s6'>"+
+               "<button class='btnSalvar btn waves-effect waves-light right' name='action'>Salvar"+
+          "<i class='material-icons right'>save</i>"+
+        "</button>"+
+             "</div>"+
+           "</div>"+
+         "</form>"+
+       "</div>"+
+          "</div>"+
+        "</li>";
+        if(vencido){
+        $("#listaClientes").prepend(itemCliente);
+      }else {
+        $("#listaClientes").append(itemCliente);
+      }
+      PesquisaCliente();
+      })
+      $(".btnExcluir").click(function(){
+        $(this).parent().parent().parent().find("input").each(function(){
+      console.log($(this).val())
+      })
+      })
+
+      $(".btnSalvar").click(function(event){
+        M.toast({
+          html: 'Salvando dados...', classes: 'rounded yellow black-text'})
+        event.preventDefault();
+        var dadosCliente = {
+      acao : "editaCliente",
+      nome : $(this).parent().parent().parent().find("input").eq(0).val(),
+      email :  $(this).parent().parent().parent().find("input").eq(1).val(),
+      senha :  $(this).parent().parent().parent().find("input").eq(2).val(),
+      cpf :  $(this).parent().parent().parent().find("input").eq(3).val(),
+      validade :  $(this).parent().parent().parent().find("input").eq(4).val(),
+      id :  $(this).parent().parent().parent().find("input").eq(5).val()
+      };
+      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
+      .done(function(data){
+        console.log(data);
+        carregaClientes();
+        M.Toast.dismissAll();
+        M.toast({
+          html: 'Dados do cliente foram alterados :)', classes: 'rounded green white-text', completeCallback: function(){
+            PesquisaCliente();
+          }
+        })
+      })
+      })
+
+  });
+
+}
 
 function PesquisaCliente(){
   $("#listaClientes > li").each(function(){

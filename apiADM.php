@@ -17,7 +17,12 @@ if (isset($_POST["acao"])) {
       break;
 
     case "editaCliente":
-      echo "recebi varias coisas como: ".$_POST['nome'];
+      update_user_meta( $_POST['id'], "cpf", $_POST['cpf']);
+      update_user_meta( $_POST['id'], "validade", $_POST['validade']);
+      if ($_POST['senha'] != ""){
+        wp_set_password( $_POST['senha'], $_POST['id'] );
+      }
+      echo "cliente editado";
       break;
 
     case "editaParceiro":
@@ -25,7 +30,7 @@ if (isset($_POST["acao"])) {
       break;
 
     case "excluirCliente":
-      // código
+      wp_delete_user( $_POST['id']);
       break;
 
     case "excluirParceiro":
