@@ -124,7 +124,7 @@ function carregaParceiro(){
       }
 
       $(".btnExcluir").click(function(){
-        $("#modal1").attr("idCliente", $(this).parent().parent().parent().find("input").eq(5).val());
+        $("#modal1").attr("idCliente", $(this).parent().parent().parent().find("input").eq(6).val());
         $("#modal1>div>h4").text("Excluir usuário?");
         $("#modal1>div>p").html("Você quer DEFINITIVAMENTE excluir o cliente: <b>"+ $(this).parent().parent().parent().find("input").eq(0).val()+"?</b>");
       })
