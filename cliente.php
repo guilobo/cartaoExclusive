@@ -178,11 +178,13 @@
     </div>
     <div class="row">
       <div class="">
-        sugestão de senha: <b><?echo wp_generate_password( $length = 6, $include_standard_special_chars = false );?>
+        sugestão de senha: <b><?
+        $senhaGerada = wp_generate_password( $length = 6, $include_standard_special_chars = false );
+        echo $senhaGerada;?>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">lock</i>
-        <input id="senha" type="password" name="senha" class="validate">
+        <input id="senha" type="password" name="senha" value='<?echo $senhaGerada;?>' class="validate">
         <label for="senha">Senha</label>
       </div>
     </div>

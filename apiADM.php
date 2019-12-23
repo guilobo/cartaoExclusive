@@ -7,7 +7,7 @@ if (isset($_POST["acao"])) {
 
   switch ($acao){
     case "clientes":
-      $cliente_db = $wpdb->get_results("SELECT a.id,a.user_login,a.user_email,REPLACE(REPLACE(b.meta_value , '-' , '' ),'.','') as cpf,c.meta_value as validade,d.meta_value as whatsapp FROM `wpnn_users` as a JOIN `wpnn_usermeta` AS b ON a.id = b.user_id JOIN `wpnn_usermeta` AS c ON a.id = c.user_id JOIN `wpnn_usermeta` AS d ON a.id = c.user_id where c.meta_key = 'validade' and b.meta_key = 'cpf' and d.meta_key = 'whatsapp' and a.id != 1 and a.id !=5 GROUP by a.id ORDER by a.user_login ASC");
+      $cliente_db = $wpdb->get_results("SELECT a.id,a.user_login,a.user_email,REPLACE(REPLACE(b.meta_value , '-' , '' ),'.','') as cpf, c.meta_value as validade,d.meta_value as whatsapp FROM `wpnn_users` as a JOIN `wpnn_usermeta` AS b ON a.id = b.user_id JOIN `wpnn_usermeta` AS c ON a.id = c.user_id JOIN `wpnn_usermeta` AS d ON a.id = d.user_id where c.meta_key = 'validade' and b.meta_key = 'cpf' and d.meta_key = 'whatsapp' and a.id != 1 and a.id !=5 GROUP by a.id ORDER by a.user_login ASC");
       echo json_encode($cliente_db);
       break;
 
@@ -23,17 +23,15 @@ if (isset($_POST["acao"])) {
       if ($_POST['senha'] != ""){
         wp_set_password( $_POST['senha'], $_POST['id'] );
       }
-      echo "cliente editado";
+      echo "cliente editado + ".$_POST['whatsapp'];
       break;
 
     case "editaParceiro":
       // código
       break;
 
-    case "excluirCliente":
-      if ($_POST['id'] =! 1){
+      case "excluirCliente":
       wp_delete_user( $_POST['id']);
-      }
       echo "excluirei o usuário de id= ".$_POST['id'];
       break;
 
