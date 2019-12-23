@@ -123,6 +123,7 @@ function carregaParceiro(){
         $("#listaParceiros").append(itemParceiro);
       }
 
+<<<<<<< HEAD
       $(".btnExcluir").click(function(){
         $("#modal1").attr("idCliente", $(this).parent().parent().parent().find("input").eq(6).val());
         $("#modal1>div>h4").text("Excluir usuário?");
@@ -150,6 +151,8 @@ function carregaParceiro(){
         carregaClientes();
       })
       })
+=======
+>>>>>>> 6a201e4dc9f188a0e8c45452326662cba63e851e
 
       M.AutoInit();
 
@@ -184,8 +187,14 @@ function carregaClientes(){
                "<label for='Clientenome"+cliente.id+"' class='active'>Nome</label>"+
              "</div>"+
              "<div class='input-field col s6'>"+
-               "<input disabled  id='Clienteemail"+cliente.id+"' type='email' class='validate' value="+cliente.user_email+">"+
+               "<input disabled  id='Clienteemail"+cliente.id+"' type='email' class='validate' value='"+cliente.user_email+"'>"+
                "<label for='Clienteemail"+cliente.id+"' class='active'>Email</label>"+
+             "</div>"+
+           "</div>"+
+           "<div class='row'>"+
+             "<div class='input-field col s12'>"+
+               "<input id='Clientewhats"+cliente.id+"' type='text' class='validate' value='"+cliente.whatsapp+"'>"+
+               "<label for='Clientewhats"+cliente.id+"' class='active'>WhatsApp</label>"+
              "</div>"+
            "</div>"+
            "<div class='row'>"+
@@ -206,7 +215,7 @@ function carregaClientes(){
                "<label for='Clientevalidade"+cliente.id+"' class='active'>Validade</label>"+
              "</div>"+
            "</div>"+
-           "<input type='hidden' class='validate' name='Clienteid"+cliente.id+"' value="+cliente.id+">"+
+           "<input type='hidden' class='validate idDoCliente' name='Clienteid"+cliente.id+"' value="+cliente.id+">"+
            "<div class='row'>"+
              "<div class='col s6'>"+
              "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red modal-trigger' href='#modal1'><i class='material-icons'>delete</i></a> Excluir"+
@@ -229,9 +238,9 @@ function carregaClientes(){
       PesquisaCliente();
       })
       $(".btnExcluir").click(function(){
-        $("#modal1").attr("idCliente", $(this).parent().parent().parent().find("input").eq(6).val());
+        $("#modal1").attr("idCliente", $(this).parent().parent().parent().find(".idDoCliente").val());
         $("#modal1>div>h4").text("Excluir usuário?");
-        $("#modal1>div>p").html("Você quer DEFINITIVAMENTE excluir o usuário: <b>"+ $(this).parent().parent().parent().find("input").eq(0).val()+"?</b>");
+        $("#modal1>div>p").html("Você quer excluir DEFINITIVAMENTE o usuário: <b>"+ $(this).parent().parent().parent().find("input").eq(0).val()+"?</b>");
       })
 
       // Fecha modal
@@ -240,7 +249,8 @@ function carregaClientes(){
       })
 
       // Excluir clientes
-      $("#excluiCliente").click(function(){
+      $("#excluiCliente").click(function(event){
+        event.preventDefault();
         M.toast({html: 'Excluindo cliente...', classes:'yellow black-text'});
         $('#modal1').modal('close');
         var dadosCliente = {
@@ -264,10 +274,11 @@ function carregaClientes(){
       acao : "editaCliente",
       nome : $(this).parent().parent().parent().find("input").eq(0).val(),
       email :  $(this).parent().parent().parent().find("input").eq(1).val(),
-      senha :  $(this).parent().parent().parent().find("input").eq(2).val(),
-      cpf :  $(this).parent().parent().parent().find("input").eq(3).val(),
-      validade :  $(this).parent().parent().parent().find("input").eq(4).val(),
-      id :  $(this).parent().parent().parent().find("input").eq(5).val()
+      whatsapp :  $(this).parent().parent().parent().find("input").eq(2).val(),
+      senha :  $(this).parent().parent().parent().find("input").eq(3).val(),
+      cpf :  $(this).parent().parent().parent().find("input").eq(4).val(),
+      validade :  $(this).parent().parent().parent().find("input").eq(5).val(),
+      id :  $(this).parent().parent().parent().find(".idDoCliente").val()
       };
       $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
       .done(function(data){
