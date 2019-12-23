@@ -105,7 +105,7 @@ function carregaParceiro(){
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='col s6'>"+
-                    "<a class='btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>delete</i></a> Excluir"+
+                  "<a class='btnExcluir btn-floating btn-small waves-effect waves-light red modal-trigger' href='#modal1'><i class='material-icons'>delete</i></a> Excluir"+
                   "</div>"+
                   "<div class='col s6'>"+
                       "<a class='waves-effect waves-light btn right'><i class='material-icons left'>check</i>APROVAR</a>"+
@@ -122,6 +122,35 @@ function carregaParceiro(){
       }else {
         $("#listaParceiros").append(itemParceiro);
       }
+
+      $(".btnExcluir").click(function(){
+        $("#modal1").attr("idCliente", $(this).parent().parent().parent().find("input").eq(5).val());
+        $("#modal1>div>h4").text("Excluir usuário?");
+        $("#modal1>div>p").html("Você quer DEFINITIVAMENTE excluir o cliente: <b>"+ $(this).parent().parent().parent().find("input").eq(0).val()+"?</b>");
+      })
+
+      // Fecha modal
+      $("#fechaModal").click(function(){
+        $('#modal1').modal('close');
+      })
+
+      // Excluir clientes
+      $("#excluiCliente").click(function(){
+        M.toast({html: 'Excluindo cliente...', classes:'yellow black-text'});
+        $('#modal1').modal('close');
+        var dadosCliente = {
+      acao : "excluirCliente",
+      id :  $('#modal1').attr("idCliente")
+      };
+      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
+      .done(function(data){
+        M.Toast.dismissAll();
+        M.toast({html: 'Cliente excluído com sucesso', classes:'green'});
+        console.log(data);
+        carregaClientes();
+      })
+      })
+
       M.AutoInit();
 
     });
@@ -200,27 +229,30 @@ function carregaClientes(){
       PesquisaCliente();
       })
       $(".btnExcluir").click(function(){
-        $(this).parent().parent().parent().find("input").each(function(){
+        $("#modal1").attr("idCliente", $(this).parent().parent().parent().find("input").eq(6).val());
         $("#modal1>div>h4").text("Excluir usuário?");
         $("#modal1>div>p").html("Você quer DEFINITIVAMENTE excluir o usuário: <b>"+ $(this).parent().parent().parent().find("input").eq(0).val()+"?</b>");
-
-      })
       })
 
       // Fecha modal
-      $(".fechaModal").click(function(){
+      $("#fechaModal").click(function(){
         $('#modal1').modal('close');
       })
 
       // Excluir clientes
-      $(".excluiCliente").click(function(){
+      $("#excluiCliente").click(function(){
+        M.toast({html: 'Excluindo cliente...', classes:'yellow black-text'});
+        $('#modal1').modal('close');
         var dadosCliente = {
       acao : "excluirCliente",
-      id :  $(this).parent().parent().parent().find("input").eq(5).val()
+      id :  $('#modal1').attr("idCliente")
       };
       $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
       .done(function(data){
-        M.toast({html: 'Cliente excluído com sucesso', classes:'green'})
+        M.Toast.dismissAll();
+        M.toast({html: 'Cliente excluído com sucesso', classes:'green'});
+        console.log(data);
+        carregaClientes();
       })
       })
 
