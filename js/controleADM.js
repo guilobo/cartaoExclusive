@@ -161,6 +161,12 @@ function carregaClientes(){
            "</div>"+
            "<div class='row'>"+
              "<div class='input-field col s12'>"+
+               "<input id='Clientewhats"+cliente.id+"' type='text' class='validate' value='"+cliente.whatsapp+"'>"+
+               "<label for='Clientewhats"+cliente.id+"' class=''>WhatsApp</label>"+
+             "</div>"+
+           "</div>"+
+           "<div class='row'>"+
+             "<div class='input-field col s12'>"+
                "<input id='Clientepassword"+cliente.id+"' type='password' class='validate' value=''>"+
                "<label for='Clientepassword"+cliente.id+"' class=''>Definir nova senha</label>"+
              "</div>"+
@@ -232,10 +238,11 @@ function carregaClientes(){
       acao : "editaCliente",
       nome : $(this).parent().parent().parent().find("input").eq(0).val(),
       email :  $(this).parent().parent().parent().find("input").eq(1).val(),
-      senha :  $(this).parent().parent().parent().find("input").eq(2).val(),
-      cpf :  $(this).parent().parent().parent().find("input").eq(3).val(),
-      validade :  $(this).parent().parent().parent().find("input").eq(4).val(),
-      id :  $(this).parent().parent().parent().find("input").eq(5).val()
+      whatsapp :  $(this).parent().parent().parent().find("input").eq(2).val(),
+      senha :  $(this).parent().parent().parent().find("input").eq(3).val(),
+      cpf :  $(this).parent().parent().parent().find("input").eq(4).val(),
+      validade :  $(this).parent().parent().parent().find("input").eq(5).val(),
+      id :  $(this).parent().parent().parent().find("input").eq(6).val()
       };
       $.post("https://draisistoledo.com/cartao/apiADM.php", dadosCliente)
       .done(function(data){
