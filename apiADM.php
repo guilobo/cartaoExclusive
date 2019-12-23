@@ -27,7 +27,8 @@ if (isset($_POST["acao"])) {
       break;
 
     case "editaParceiro":
-      // código
+      $cliente_db = $wpdb->get_results("UPDATE `cartao_parceiros` SET `nome`= '$_POST['nome']',`cnpj`='$_POST['cnpj']',`endereco`='$_POST['endereco']',`cidade`='$_POST['cidade']',`estado`='$_POST['estado']',`telefone`='$_POST['telefone']',`ramo`='$_POST['ramo']',`horaFuncionamento`='$_POST['horaFuncionamento']',`email`='$_POST['email']',`tipoDesconto`='$_POST['tipoDesconto']',`desconto`='$_POST['desconto']',`obsDesconto`='$_POST['obsDesconto']',`aprovado`= true WHERE id = $_POST['id']");
+      echo json_encode($parceiros_db);
       break;
 
       case "excluirCliente":
@@ -36,7 +37,8 @@ if (isset($_POST["acao"])) {
       break;
 
     case "excluirParceiro":
-      // código
+      $cliente_db = $wpdb->get_results("DELETE FROM cartao_parceiros WHERE id = $_POST['id']");
+      echo json_encode($parceiros_db);
       break;
   }
 }else{
