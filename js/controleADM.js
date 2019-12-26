@@ -1,10 +1,13 @@
 $(document).ready(function(){
+
 carregaClientes();
 carregaParceiro();
 
 
 
 });
+
+
 function carregaParceiro(){
   $("#listaParceirosAguardando").html("");
   $("#listaParceiros").html("");
@@ -20,7 +23,7 @@ function carregaParceiro(){
 
       $.each(parceiros, function(index, parceiro){
         var itemParceiro = "<li>"+
-          "<div class='collapsible-header'>"+
+          "<div id='itenParceiroLista' class='collapsible-header'>"+
             "<i class='material-icons'>store_mall_directory</i>"+
             parceiro.nome;
             if(parceiro.aprovado == null){
@@ -107,7 +110,7 @@ function carregaParceiro(){
                 "</div>"+
                 "<div class='row'>"+
                   "<div class='input-field col s12'>"+
-                    "<input id='obsDesconto"+parceiro.id+"' type='text' class='validate class='obsParceiro' value='"+parceiro.obsDesconto+"'>"+
+                    "<input id='obsDesconto"+parceiro.id+"' type='text' class='validate obsParceiro' value='"+parceiro.obsDesconto+"'>"+
                     "<label for='obsDesconto"+parceiro.id+"' class='active'>Observação do Desconto</label>"+
                   "</div>"+
                 "</div>"+
@@ -131,74 +134,81 @@ function carregaParceiro(){
         $("#listaParceiros").append(itemParceiro);
       }
 
-      // APROVAR PARCEIRO ***********************
-      $(".btnAprovar").click(function(event){
-        M.Toast.dismissAll();
-        M.toast({
-          html: 'Salvando dados...', classes: 'rounded yellow black-text'})
-        event.preventDefault();
-        var dadosParceiro = {
-      acao : "editaParceiro",
-      nome : $(this).parent().parent().parent().find(".nomeParceiro").val(),
-      email :  $(this).parent().parent().parent().find(".emailParceiro").val(),
-      cnpj :  $(this).parent().parent().parent().find(".cnpjParceiro").val(),
-      endereco :  $(this).parent().parent().parent().find(".enderecoParceiro").val(),
-      cidade :  $(this).parent().parent().parent().find(".cidadeParceiro").val(),
-      estado :  $(this).parent().parent().parent().find(".estadoParceiro").val(),
-      telefone :  $(this).parent().parent().parent().find(".telefoneParceiro").val(),
-      ramo :  $(this).parent().parent().parent().find(".ramoParceiro").val(),
-      horaFuncionamento :  $(this).parent().parent().parent().find(".funcionamentoParceiro").val(),
-      desconto :  $(this).parent().parent().parent().find(".descontoParceiro").val(),
-      tipoDesconto :  $(this).parent().parent().parent().find(".tipoParceiro").val(),
-      obsDesconto :  $(this).parent().parent().parent().find(".obsParceiro").val(),
-      id :  $(this).parent().parent().parent().find(".idParceiro").val()
-      };
-      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosParceiro)
-      .done(function(data){
-        console.log(data);
-        carregaParceiro();
-        M.Toast.dismissAll();
-        M.toast({
-          html: 'Dados do Parceiro foram alterados :)', classes: 'rounded green white-text', completeCallback: function(){
-          }
-        })
-      })
-      })
-
-      // EXCLUIR PARCEIRO ***********************
-      $(".btnExcluirParceiro").click(function(){
-        $("#modal2").attr("idParceiro", $(this).parent().parent().parent().find(".idParceiro").val());
-        $("#modal2>div>h4").text("Excluir Parceiro?");
-        $("#modal2>div>p").html("Deseja REJEITAR o Parceiro: <b>"+ $(this).parent().parent().parent().find(".nomeParceiro").val()+"?</b>");
-      })
-
-      // Fecha modal
-      $("#fechaModal2").click(function(){
-        $('#modal2').modal('close');
-      })
-
-      // Excluir clientes
-      $("#excluiParceiro").click(function(event){
-        event.preventDefault();
-        M.Toast.dismissAll();
-        M.toast({html: 'Excluindo parceiro...', classes:'yellow black-text'});
-        $('#modal2').modal('close');
-        var dadosParceiro = {
-      acao : "excluirParceiro",
-      id :  $('#modal2').attr("idParceiro")
-      };
-      $.post("https://draisistoledo.com/cartao/apiADM.php", dadosParceiro)
-      .done(function(data){
-        M.toast({html: 'Parceiro recusado e excluído com sucesso', classes:'green'});
-        console.log(data);
-        carregaParceiro();
-      })
-      })
-
-      M.AutoInit();
-
     });
 
+
+          // APROVAR PARCEIRO ***********************
+          $(".btnAprovar").click(function(event){
+            M.Toast.dismissAll();
+            M.toast({
+              html: 'Salvando dados...', classes: 'rounded yellow black-text'})
+            event.preventDefault();
+            var tipoDeDesconto;
+            if ($(this).parent().parent().parent().find(".tipoParceiro").prop("checked") == true){
+              tipoDeDesconto = "porcento";
+            }else{
+              tipoDeDesconto = "real";
+            }
+            var dadosParceiro = {
+          acao : "editaParceiro",
+          nome : $(this).parent().parent().parent().find(".nomeParceiro").val(),
+          email :  $(this).parent().parent().parent().find(".emailParceiro").val(),
+          cnpj :  $(this).parent().parent().parent().find(".cnpjParceiro").val(),
+          endereco :  $(this).parent().parent().parent().find(".enderecoParceiro").val(),
+          cidade :  $(this).parent().parent().parent().find(".cidadeParceiro").val(),
+          estado :  $(this).parent().parent().parent().find(".estadoParceiro").val(),
+          telefone :  $(this).parent().parent().parent().find(".telefoneParceiro").val(),
+          ramo :  $(this).parent().parent().parent().find(".ramoParceiro").val(),
+          horaFuncionamento :  $(this).parent().parent().parent().find(".funcionamentoParceiro").val(),
+          desconto :  $(this).parent().parent().parent().find(".descontoParceiro").val(),
+          tipoDesconto :  tipoDeDesconto,
+          obsDesconto :  $(this).parent().parent().parent().find(".obsParceiro").val(),
+          id :  $(this).parent().parent().parent().find(".idParceiro").val()
+          };
+          $.post("https://draisistoledo.com/cartao/apiADM.php", dadosParceiro)
+          .done(function(data){
+            console.log(data);
+            carregaParceiro();
+            M.Toast.dismissAll();
+            M.toast({
+              html: 'Dados do Parceiro foram alterados :)', classes: 'rounded green white-text', completeCallback: function(){
+              }
+            })
+          })
+          })
+
+          // EXCLUIR PARCEIRO ***********************
+          $(".btnExcluirParceiro").click(function(){
+            $("#modal2").attr("idParceiro", $(this).parent().parent().parent().find(".idParceiro").val());
+            $("#modal2").attr("imgParceiro", $(this).parent().parent().parent().find(".imgLogoAdmParceiro").attr("src"));
+            $("#modal2>div>h4").text("Excluir Parceiro?");
+            $("#modal2>div>p").html("Deseja REJEITAR o Parceiro: <b>"+ $(this).parent().parent().parent().find(".nomeParceiro").val()+"?</b>");
+          })
+
+          // Fecha modal
+          $("#fechaModal2").click(function(){
+            $('#modal2').modal('close');
+          })
+
+          // Excluir Parceiros
+          $("#excluiParceiro").click(function(event){
+            event.preventDefault();
+            M.toast({html: 'Excluindo parceiro...', classes:'yellow black-text'});
+            $('#modal2').modal('close');
+            var dadosParceiro = {
+          acao : "excluirParceiro",
+          logo: $('#modal2').attr("imgParceiro"),
+          id :  $('#modal2').attr("idParceiro")
+          };
+          $.post("https://draisistoledo.com/cartao/apiADM.php", dadosParceiro)
+          .done(function(data){
+            M.toast({html: 'Parceiro recusado e excluído com sucesso', classes:'green'});
+            console.log(data);
+            carregaParceiro();
+          })
+          })
+
+          M.AutoInit();
   });
 }
 function carregaClientes(){
@@ -359,4 +369,32 @@ $("#buscaClientes").focusout(function(){
 $("#fechaBuscaCliente").click(function(){
   $("#buscaClientes").val("");
   PesquisaCliente();
+})
+
+function PesquisaParceiro(){
+  $("#listaParceiros > li").each(function(){
+    if ($(this).find("#itenParceiroLista").text().toUpperCase().indexOf($("#buscaParceiro").val().toUpperCase()) == -1)
+    $(this).addClass("some")
+    else {
+      $(this).removeClass("some")
+    }
+  })
+}
+
+$("#buscaParceiro").keypress(function(){
+  PesquisaParceiro();
+});
+
+$("#buscaParceiro").focusout(function(){
+  PesquisaParceiro();
+});
+
+$("#fechaBuscaParceiro").click(function(){
+  $("#buscaParceiro").val("");
+  PesquisaParceiro();
+})
+
+$(".formDePesquisa").submit(function(e){
+  e.preventDefault(e);
+  document.activeElement.blur();
 })

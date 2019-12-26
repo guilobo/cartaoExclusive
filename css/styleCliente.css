@@ -45,6 +45,14 @@
 }
 
 .imgLogoAdmParceiro{
-  max-width: 150px;
+  max-width: 100%;
   max-height: 100px;
+}
+@media screen and (max-width: 600px){
+a.brand-logo.center{
+  font-size: 15px;
+}
+a.btnAprovar{
+    font-size: 11px;
+}
 }
